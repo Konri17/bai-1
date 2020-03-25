@@ -12,6 +12,13 @@
 
     <script>
         // a JavaScript code here ...
+        console.log(document.getElementsByTagName('h1')[0].innerHTML);  //only first element
+        console.log(document.getElementById("someTest").innerHTML);
+        console.log(document.getElementsByClassName('important')[0].innerHTML);
+        for(element of Array.from(document.getElementsByTagName("p")));
+        {
+            console.log(element.innerHTML);
+        }
 
     </script>
 </body>
