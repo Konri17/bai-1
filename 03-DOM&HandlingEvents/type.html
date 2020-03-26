@@ -20,30 +20,25 @@
     Przeciw nim sterczy biała, wąska, zaostrzona,<br>
     Jak głaz bodzący morze, reduta Ordona.</p>
 
-<textarea oninput="setTimeout(test, 3000)" rows="15" cols="50"></textarea><br>
-<p id="score"></p>
-<script>
-			function startTimer() {
-				if(timerStarted === false) setTimeout(() => handleTimeout(), 3000) //30000 - 30s
-				console.log("Timer started")
-				timerStarted = true;
-			}
-
-			function handleTimeout() {
-				let textArea = document.getElementById("textAreaId")
-				textArea.disabled = true
-				let enteredText = textArea.value
-				let wordCount = enteredText.split(" ").length
-				let charCount = enteredText.replace("\s+", "").length
-
-				let el = document.createElement("p")
-				el.innerText = "Ilość słów: " + wordCount + ", ilość znaków: " + charCount
-				textArea.parentNode.insertBefore(el, textArea.nextSibling)
-			}
-		</script>
+	<textarea rows="15" cols="50" oninput="toMeasureTime()" id="text"></textarea><br>
+	<p id="points"></p>
+	
+	<script>
+		var varr = true;
+		function toMeasureTime(){
+			if(varr){
+				varr = false;
+				setTimeout(function(){
+					var text = document.getElementById("text").value;
+					var wordCount = text.split(' ').length;
+					var singCount = text.length - wordCount + 1;
+					var score = 'Liczba wpisanych słów: ' + wordCount + ' Liczba wpisanych znaków: ' +  singCount;
+					document.getElementById("points").innerHTML = score;
+				},30000)
+			}				
+		}
 		
-	</body>
-</html>
-</script>
+	</script>
+	
 </body>
 </html>
