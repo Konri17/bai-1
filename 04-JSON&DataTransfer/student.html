@@ -7,10 +7,23 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data">
+		<input type="button" value="Display student's data" onclick="readMyFile()">
 		<p id="personalData"></p>
 
 		<script>
+			function readMyFile() {
+				let myFile = new FileReader();
+				myFile.onload = function(e) {
+    			var doc = e.target.result;
+    			displayContents(doc);
+  				};
+  			myFile.readAsText(file);			
+						document.getElementById("personalData").textContent = `name: ${info.name} surname: ${info.surname}`;		
+				}
+			function displayContents(contents) {
+				let element = document.getElementById('personalData');
+				element.textContent = contents;
+				}
 
 		</script>
 
