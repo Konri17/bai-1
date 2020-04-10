@@ -7,25 +7,41 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data" onclick="readMyFile()">
+
+		<input type="button" value="Display student's data" onclick="connect()">
 		<p id="personalData"></p>
 
 		<script>
-			function readMyFile() {
-				let myFile = new FileReader();
-				myFile.onload = function(e) {
-    			var doc = e.target.result;
-    			displayContents(doc);
-  				};
-  			myFile.readAsText(file);			
-						document.getElementById("personalData").textContent = `name: ${info.name} surname: ${info.surname}`;		
-				}
-			function displayContents(contents) {
-				let element = document.getElementById('personalData');
-				element.textContent = contents;
-				}
+			
+		function connect() {
 
-		</script>
+		var method = 'GET';
 
-	</body>
+		var URL = 'https://raw.githubusercontent.com/Konri17/bai-1/master/04-JSON%26DataTransfer/idk.json.txt';
+
+		var xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange = function () { display(this); };
+
+		xhr.open(method, URL);
+
+		xhr.send();
+
+		}
+
+		function display(r) {
+
+		if (r.readyState == 4 && r.status == 200) {
+
+			var data = JSON.parse(r.responseText);
+
+			document.getElementById('personalData').innerText = data.name + ' ' + data.surname;
+
+		}
+
+		};
+
+</script>
+
+
 </html>

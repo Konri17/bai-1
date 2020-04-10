@@ -1,6 +1,6 @@
 [
   {
     "name": "konrad",
-    "surname" : "flaka",
+    "surname" : "flaka"
   }
 ]
