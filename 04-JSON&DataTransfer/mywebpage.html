@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Student</title>
+        <meta charset="UTF-8">
+        <title>Datatables</title>
+        <meta charset="UTF-8">  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> 
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	</head>
+	<body>
+		<h1>My table</h1>
+		<p>Open the table</p>
+		<input type="button" value="Display tables's data" onclick="readMyNewFile()">
+        <p id="personalData"></p>      
+        <table id="info-table" class="display" style="width:100%">
+            <thead>  
+                <tr>   
+                    <th>Name</th>   
+                    <th>Surname</th>    
+                    <th>Age</th>   
+                    <th>Country</th>    
+                    <th>Email</th>   
+                </tr>   
+            </thead>   
+            <tbody></tbody>
+        </table>
+		<script>		
+let table;
+
+function readMyNewFile() {
+    $.ajax({
+        dataType: 'json',
+        url: "https://raw.githubusercontent.com/kbednarz/bai/solutions/04-JSON%26DataTransfer/people.json", success: function (result) {
+            // clear table
+            table.rows().remove();
+            // load data
+            result.forEach(e => {
+                table.row.add([
+                    e.name,
+                    e.surname,
+                    e.age,
+                    e.country,
+                    e.email
+                ]).draw(false);
+            });
+        }
+    });
+}
+
+$(document).ready(function () {
+    table = $('#info-table').DataTable();
+});
+</script>
+
+
+
+	</body>
+</html>

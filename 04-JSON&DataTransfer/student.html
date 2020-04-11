@@ -8,40 +8,24 @@
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
 
-		<input type="button" value="Display student's data" onclick="connect()">
+		<input type="button" value="Display student's data" onclick="readMyNewFile()">
 		<p id="personalData"></p>
 
-		<script>
-			
-		function connect() {
-
-		var method = 'GET';
-
-		var URL = 'https://raw.githubusercontent.com/Konri17/bai-1/master/04-JSON%26DataTransfer/idk.json.txt';
-
-		var xhr = new XMLHttpRequest();
-
-		xhr.onreadystatechange = function () { display(this); };
-
-		xhr.open(method, URL);
-
-		xhr.send();
-
+		<script>		
+		function readMyNewFile() {
+		let URL = 'https://raw.githubusercontent.com/Konri17/bai-1/master/04-JSON%26DataTransfer/mynewfile.txt';
+		let info = new XMLHttpRequest();
+		info.onreadystatechange = function () { display(this); };
+		info.open('GET', URL);
+		info.send();
 		}
-
 		function display(r) {
-
 		if (r.readyState == 4 && r.status == 200) {
-
 			var data = JSON.parse(r.responseText);
-
 			document.getElementById('personalData').innerText = data.name + ' ' + data.surname;
-
 		}
-
-		};
-
+	};
 </script>
 
-
+	</body>
 </html>
