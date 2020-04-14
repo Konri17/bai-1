@@ -12,7 +12,7 @@
 	<body>
 		<h1>My table</h1>
 		<p>Open the table</p>
-		<input type="button" value="Display tables's data" onclick="readMyNewFile()">
+		<input type="button" value="Display tables's data" onclick="readPeople()">
         <p id="personalData"></p>      
         <table id="info-table" class="display" style="width:100%">
             <thead>  
@@ -29,10 +29,10 @@
 		<script>		
 let table;
 
-function readMyNewFile() {
+function readPeople() {
     $.ajax({
         dataType: 'json',
-        url: "https://raw.githubusercontent.com/kbednarz/bai/solutions/04-JSON%26DataTransfer/people.json", success: function (result) {
+        url: "https://raw.githubusercontent.com/Konri17/bai-1/master/04-JSON%26DataTransfer/people.json", success: function (result) {
             // clear table
             table.rows().remove();
             // load data

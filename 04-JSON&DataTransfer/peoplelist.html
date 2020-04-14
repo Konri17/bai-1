@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of people</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>People List</h1>
+<input type="button" value="Show data" onclick="readPeople()">
+<p id="peopleData"></p>
+
+<script>
+    function readPeople(){
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                JSON.parse(xhr.response).map((result, key) => {
+                    let info = document.createElement("div");
+                    info.innerHTML = `${key + 1}. ${result.name} ${result.surname.toUpperCase()}, ${result.country}`;
+                    document.getElementById("peopleData").appendChild(info);
+                })
+            }
+        };
+        xhr.open('GET', 'https://raw.githubusercontent.com/Konri17/bai-1/master/04-JSON%26DataTransfer/people.json');
+        xhr.send();
+    }
+</script>
+
+</body>
+</html>
