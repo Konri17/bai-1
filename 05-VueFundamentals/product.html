@@ -9,12 +9,12 @@
   <h1>RECEIPT</h1>
   <div id="app">
     <div style="width: 200px;">
-      <hr style="border-top: 1px dashed;">
+      <hr style="border-top: 1px dashed;">  
       <div>
         Product: {{product.name}}<br>
-        Unit Price: {{product.unitPrice}} zł<br>
+        Unit Price: {{product.unitPrice - 0.5}} zł<br>
         Quantity: {{product.quantity}}<br>
-        Amount: {{amount}} zł<br>
+        Amount: {{(product.unitPrice - 0.5) * product.quantity}} zł<br>
         VAT Tax Rate: {{product.VAT}}%<br>
       </div>
       <hr style="border-top: 1px dashed;">
@@ -28,17 +28,17 @@
       data: {
         product: {
           name: 'book',
-          unitPrice: 17,
+          unitPrice: 17.5,
           quantity: 3,
           VAT: 23
         }
       },
       computed: {
         amount: function () {
-          return this.product.unitPrice * this.product.quantity
+          return this.product.quantity * (this.product.unitPrice - 0.5)
         },
         total: function () {
-          return (this.amount * (1 + this.product.VAT / 100)).toFixed(2);
+          return ((1 + this.product.VAT / 100) * this.amount).toFixed(2);
         }
       }
     });
