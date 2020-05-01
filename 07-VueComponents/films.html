@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Movies</h1>
+    <movie title="Space Jam" director="Joe Pytka" date="1996"></movie>
+    <movie title="Spider-Man" director="Sam Raimi" date="2002"></movie>
+    <movie title="Inception" director="Christopher Nolan" date="2010"></movie>
+  </div>
+  <script>
+    Vue.component('movie', {
+      props: ['title', 'director', 'date'],
+      template: `<div>
+        <h4>Title: {{title}}</h4>
+        <p>Director: {{director}} Production Year: {{date}}</p>
+        </div>`,
+    });
+
+    var app = new Vue({
+      el: '#app'
+    });
+  </script>
+</body>
+
+</html>
