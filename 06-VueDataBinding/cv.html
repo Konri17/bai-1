@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <h3>Your CV form</h3>
+  <div id="app">
+    Name: <input type="text" v-model="cv.name"> <br>
+    <br>
+    Surame: <input type="text" v-model="cv.surname"> <br>
+    <br>
+    Age: <input type="number" v-model="cv.age"min="0" step='1'> <br>
+    <br>
+    Gender: <input type="radio" id= "male" value= "male" v-model="cv.gender">
+    <label for="male">Male</label>
+    <input type="radio" id="female" value="female" v-model="cv.gender"> 
+    <label for="female">Female</label><br>
+    <br>
+    Education: <select v-model="cv.education">
+        <option disabled value="">Choose</option> 
+        <option>null</option>
+        <option>basic</option> 
+        <option>half</option> 
+        <option>high</option> 
+    </select> <br>
+    <br>
+    Additional Skills: <input type="checkbox" id= "pc" value= "pc" v-model="cv.skills"> 
+    <label for="pc">Work on PC</label>
+    <input type="checkbox" id="drive" value="drive" v-model="cv.skills"> 
+    <label for="drive">Driver License</label>
+    <input type="checkbox" id="creativity" value="creativity" v-model="cv.skills"> 
+    <label for="creativity">Creativity</label>
+    <input type="checkbox" id="teamwork" value="teamwork" v-model="cv.skills"> 
+    <label for="teamwork">Team work</label> <br>
+    <br>
+    <button type="button" v-on:click="saveData()">Save</button>
+    <button type="button" v-on:click="readData()">Read</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+          cv :{
+        name : '',
+        surname: '',
+        age: 0,
+        gender: null,
+        education: "",
+        skills:[]
+          },
+      },
+      methods: {
+        saveData: function () {
+            var myString = JSON.stringify(this.cv);
+            localStorage.setItem('cv', myString);
+        },
+        readData: function () {
+            myString = localStorage.getItem('cv');
+            this.cv = JSON.parse(myString);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

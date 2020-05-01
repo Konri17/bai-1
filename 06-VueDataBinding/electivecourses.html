@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>Lista przedmiotów do wyboru:</h2>
+    <div v-for="course in courses">
+        <input type="checkbox" v-model="course.checked">
+        <h7>{{course.name}}</h7>
+    </div>
+    <div>
+        <h4>Ilość wybranych przedmiotów: {{selected}}</h4>
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            courses: [
+                {name: 'Bogate aplikacje internetowe', checked: false},
+                {name: 'Hurtownie danych', checked: false},
+                {name: 'Business English', checked: false},
+                {name: 'Marketing i handel elektroniczny', checked: false},
+                {name: 'Metody optymalizacji procesów', checked: false}
+            ]
+        },
+        computed: {
+            selected() {
+                return (this.courses.filter((course) => course.checked).length)
+            }
+        }
+    });
+</script>
+</body>
+</html>
