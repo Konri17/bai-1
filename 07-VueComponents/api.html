@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <rate rate="EUR"></rate>
+    <rate rate="USD"></rate>
+  </div>
+  <script>
+    Vue.component('rate', {
+      props: ['rate'],
+      data: function () {
+        return {
+          data: ''
+        }
+      },
+      template: '<p v-if="data">Actual {{data.code}} exchange rate: {{data.rates[0].mid}} [PLN]</p>',
+      mounted() {
+        var URL = `http://api.nbp.pl/api/exchangerates/rates/A/${this.rate}`;
+        var xhr = new XMLHttpRequest();
+        const self = this;
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            self.data = JSON.parse(this.responseText);
+          }
+        };
+        xhr.open('GET', URL);
+        xhr.send();
+      }
+    })
+
+    var app = new Vue({
+      el: '#app'
+    });
+  </script>
+</body>
+
+</html>

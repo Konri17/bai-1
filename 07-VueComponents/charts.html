@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+  <body>
+    <div id="app">
+      <Chart
+        label="Preference in programing language"
+        :labels='["JavaScript", "Python", ".NET", "C#", "Java"]'
+        :data="[10, 15, 2, 7, 13]"
+      ></Chart>
+    </div>
+  </body>
+  <script>
+    Vue.component("Chart", {
+      props: ["label", "labels", "data"],
+      template: `
+            <canvas id="firstChart"></canvas>
+        `,
+      mounted: function () {
+        var ctx = document.getElementById("firstChart").getContext("2d");
+        var chart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: [...this.labels],
+            datasets: [
+              {
+                label: this.label,
+                data: [...this.data],
+                borderColor: 'yellow',
+                backgroundColor: 'yellow',
+              },
+            ],
+          },
+        });
+      },
+    });
+
+    new Vue({
+      el: "#app",
+    });
+  </script>
+</html>

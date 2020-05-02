@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <binary v-for="element in elements" v-bind:element="element"></binary>
+  </div>
+  <script>
+
+    Vue.filter('changeToBinary', (value) => value.toString(2));
+
+    Vue.component('binary', {
+      props: ['element'],
+      template: '<div>{{ element }}(10) = {{ element | changeToBinary }}(2)</div>',
+    })
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        elements: [8, 170, 204, 3855]
+      }
+    });
+  </script>
+</body>
+
+</html>
